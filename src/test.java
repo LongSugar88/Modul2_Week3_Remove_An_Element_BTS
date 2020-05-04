@@ -1,17 +1,19 @@
 public class test {
     public static void main(String[] args) throws Exception {
-        BST<Integer> myList = new BST<Integer>();
-        myList.insert(5);
-        myList.insert(2);
-        myList.insert(7);
-        myList.insert(1);
-        myList.insert(8);
+        BST<Integer> myList = new BST<>();
+        myList.insert(60);
+        myList.insert(55);
+        myList.insert(100);
+        myList.insert(45);
+        myList.insert(57);
+        myList.insert(67);
+        myList.insert(107);
         myList.inorder();
         System.out.println("--------------------------------");
         System.out.println(myList.size);
         System.out.println("--------------------------------");
-        myList.remove(5);
-        myList.remove(2);
+//        myList.remove(5);
+        myList.remove(60);
         myList.inorder();
         System.out.println("--------------------------------");
         System.out.println(myList.size);

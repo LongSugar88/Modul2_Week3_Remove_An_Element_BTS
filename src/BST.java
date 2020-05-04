@@ -7,36 +7,27 @@ public class BST<T extends Comparable<T>>  {
     public boolean insert( T element) {
         Node<T> parent = null;
         Node<T> current = root;
-
         if (root == null) {
             root = new Node<>(element);
-            size++;
-            return true;
-        }
-        else
+        } else {
             while (current != null) {
-            if (root.data.compareTo(element) < 0) {
-                parent = current;
-                current = current.right;
-            } else if (root.data.compareTo(element) > 0) {
-                parent = current;
-                current = current.left;
+                if (current.data.compareTo(element) < 0) {
+                    parent = current;
+                    current = current.right;
+                }
+                else if (current.data.compareTo(element) > 0) {
+                    parent = current;
+                    current = current.left;
+                } else
+                    return false;
             }
-            else {
-                return false;
-            }
-        }
-            if(parent.data.compareTo(element) > 0){
+            if (element.compareTo(parent.data) < 0) {
                 parent.left = new Node<>(element);
             } else {
                 parent.right = new Node<>(element);
             }
-            size++;
+        }
         return true;
-    }
-    public void remove(T element){
-        remove(root, element);
-        size--;
     }
     public Node<T> findMax(Node<T> root){
         while (root.right != null){
@@ -44,11 +35,15 @@ public class BST<T extends Comparable<T>>  {
         }
         return root;
     }
+    public Node<T> remove(T element){
+        root = remove(root, element);
+        size--;
+        return root;
+    }
     private Node<T> remove(Node<T> root, T element){
         if (root==null){
             return root;
         } else {
-
             if (element.compareTo(root.data)>0){
                 root.right= remove(root.right,element);
             } else if (element.compareTo(root.data)<0){
@@ -57,13 +52,16 @@ public class BST<T extends Comparable<T>>  {
                 if (root.left==null){
                     return root.right;
                 } else if (root.right==null){
+                    String data = root.left.data.toString();
                     return root.left;
                 } else {
                     root.data =findMax(root.left).data;
+                    String data = root.data.toString();
                     root.left=remove(root.left,root.data);
                 }
             }
         }
+        String data = root.data.toString();
         return root;
     }
 
